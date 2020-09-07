@@ -20,6 +20,14 @@ userInput.addEventListener("input", (event) => {
 - Проверьте наличие у него класса www.
 - Добавьте ему класс www, если его нет и удалите - если есть. */
 
+const elem = document.createElement("div");
+elem.id = "elem";
+
+elem.classList.add("www");
+elem.classList.remove("www");
+elem.classList.contains("www");
+elem.classList.toggle("www");
+
 /* 3. Вставьте элементы массива объектов(id, title, description) в конец ul так,
 чтобы каждый на каждый объект был свой li. 
 Сделайте так, чтобы по нажатию на li - он подсвечивался другим цветом.
