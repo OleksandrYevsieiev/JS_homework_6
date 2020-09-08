@@ -33,6 +33,59 @@ elem.classList.toggle("www");
 Сделайте так, чтобы по нажатию на li - он подсвечивался другим цветом.
 Сделайте так, чтобы по нажатию на кнопку внтри li эта li удалялась из разметки. */
 
+const ulRootDiv = document.getElementById("ulRoot");
+const form = document.createElement("form");
+ulRootDiv.append(form);
+
+let inputArray = [];
+const ul = document.createElement("ul");
+ulRootDiv.append(ul);
+
+const input = document.createElement("input");
+const submitBtn = document.createElement("button");
+submitBtn.textContent = "Submit";
+form.append(input);
+form.append(submitBtn);
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (input.value.length <= 0) {
+    alert("Enter a correct value");
+    return;
+  }
+
+  inputArray.push(input.value);
+
+  const li = document.createElement("li");
+  li.textContent = input.value;
+
+  ul.append(li);
+
+  const delBtn = document.createElement("button");
+
+  li.append(delBtn);
+  delBtn.dataset.value = input.value;
+  delBtn.textContent = "Delete";
+
+  delBtn.addEventListener("click", (event) => {
+    const {
+      target: {
+        dataset: { value },
+      },
+    } = event;
+
+    inputArray.splice(inputArray.indexOf(value), 1);
+    li.remove();
+  });
+
+  li.addEventListener("click", (event) => {
+    li.style.color = "red";
+  });
+
+  event.target.reset();
+  return delBtn;
+});
+
 /* 4. Реализуйте класс Elem, который параметром принимает селектор одного HTML элемента и затем может выполнять с ним различные операции.
 Класс должен работать следующим образом:
 const elem = new Elem('селектор');
