@@ -95,3 +95,37 @@ elem.prepend('!'); //запишет в конец элемента '!'
 elem.attr('class', 'www'); //запишет в атрибут class значение www
 //Должны работать цепочки методов:
 elem.html('hello').append('!').prepend('!').attr('class', 'www').attr('title', 'hello'); */
+
+class Elem {
+  constructor(selector) {
+    this.selector = selector;
+  }
+
+  html(value) {
+    this.value = value;
+    return this;
+  }
+
+  append(value) {
+    this.value += value;
+    return this;
+  }
+
+  prepend(value) {
+    this.value = value + this.value;
+    return this;
+  }
+
+  attr(attId, attIdVvalue) {
+    this.attId = attId;
+    this.attIdVvalue = attIdVvalue;
+    return this;
+  }
+}
+
+const elemMeow = new Elem("#test");
+elemMeow
+  .html("hope this")
+  .prepend("I")
+  .append("works")
+  .attr("checkingClass", "checkingClassValue");
