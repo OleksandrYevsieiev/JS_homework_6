@@ -107,8 +107,8 @@ elem.attr('class', 'www'); //запишет в атрибут class значен
 elem.html('hello').append('!').prepend('!').attr('class', 'www').attr('title', 'hello'); */
 
 class Elem {
-  constructor(selector) {
-    this.selector = selector;
+  constructor(input) {
+    this.element = document.querySelector(input);
   }
 
   html(value) {
