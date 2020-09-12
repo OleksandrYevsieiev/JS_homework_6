@@ -7,11 +7,21 @@ const rootDiv = document.getElementById("root");
 const userInput = document.createElement("input");
 const sphereVolume = document.createElement("input");
 
-rootDiv.append(userInput);
-rootDiv.append(sphereVolume);
+rootDiv.append(userInput, sphereVolume);
+const inputCheck = /[0-9]+/gi;
 
 userInput.addEventListener("input", (event) => {
-  sphereVolume.value = (4 / 3) * 3.1415 * userInput.value ** 3;
+  if (userInput.value < 0) {
+    alert("Be sure to enter a positive number");
+    throw new RangeError("Be sure to enter a positive number");
+  }
+
+  if (inputCheck.test(userInput.value) || userInput.value === "") {
+    sphereVolume.value = (4 / 3) * 3.1415 * userInput.value ** 3;
+  } else {
+    alert("Be sure to enter a positive number");
+    throw new TypeError("Be sure to enter a positive number");
+  }
 });
 
 /* 2.Дан элемент #elem. Реализуйте 4 функции:
